@@ -1,0 +1,45 @@
+import pandas as pd
+
+# Initial data
+data1 = {'Make': ['SKI-DOO'], 'Model': ['all models'], 'Vendor': ['NACH'], 'MPN': ['SM-07180'], 'AD Item Number': ['120363'], 
+         'Vendor Notes': [pd.NA], 'NI#': ['SM-07180'], 'REF#': [pd.NA], 'OEM#': ['42092451']}
+
+# List of models
+new_list_models = [
+    
+'Renegade Backcountry X E-TEC 600 HO',
+'Expedition 600 SE',
+'Grand Touring 600 LE',
+'Expedition LE E-TEC 600 HO',
+'Expedition SE E-TEC 600 HO'
+
+]
+
+oem_numbers = ['420667530']
+
+# Range of years
+years = list(range(2011, 2019))
+
+# Function to generate DataFrame for each model
+def generate_df(model, data, year):
+    data_copy = data.copy()  # Create a copy of data1 to avoid modifying the original dictionary
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+# Generate DataFrames for all sets of data
+dfs = []
+for year in years:
+    for oem in oem_numbers:
+        data1['OEM#'] = oem
+        df1 = pd.concat([generate_df(model, data1, year) for model in new_list_models], ignore_index=True)
+        dfs.append(df1)
+
+# Concatenate all DataFrames
+final_df = pd.concat(dfs, ignore_index=True)
+
+# Print the final DataFrame
+print(final_df)
+
+file_path = r"C:\Users\User\Desktop\nachmann\Reed Valve Assemblies\MERGE\11-19exprenemxgrand.csv"
+final_df.to_csv(file_path, index=False)
