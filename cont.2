@@ -1,0 +1,307 @@
+import pandas as pd
+
+# Initial data
+data1 = {'Make': ['SKI-DOO'], 'Model': ['all models'], 'Vendor': ['NACH'], 'MPN': ['SM-07180'], 'AD Item Number': ['120363'], 
+         'Vendor Notes': [pd.NA], 'NI#': ['SM-07180'], 'REF#': [pd.NA], 'OEM#': ['42092451']}
+
+# List of models
+new_list_models = [
+    
+'Skandic 600 WT',
+'Skandic WT E-TEC 600 HO',
+'Skandic SWT ACE 600',
+'Tundra Xtreme E-TEC 600 HO',
+'Summit SP E-TEC 600 HO 154',
+'Summit SP E-TEC 600 HO 146',
+'Grand Touring LE E-TEC 600 HO',
+'MX Z X-RS E-TEC 600 HO',
+'MX Z X E-TEC 600 HO',
+'MX Z TNT E-TEC 600 HO',
+'MX Z Blizzard E-TEC 600 HO',
+'Renegade 600 X',
+'Renegade Backcountry X E-TEC 600 HO',
+'Renegade X E-TEC 600 HO',
+'Renegade Backcountry E-TEC 600 HO',
+'Renegade Adrenaline E-TEC 600 HO',
+'Renegade Enduro E-TEC 600 HO',
+'Expedition SE E-TEC 600 HO',
+'Expedition LE E-TEC 600 HO',
+'Tundra Sport ACE 600'
+
+]
+
+oem_numbers = ['420667530']
+
+# Range of years
+years = list(range(2011, 2022))
+
+# Function to generate DataFrame for each model
+def generate_df(model, data, year):
+    data_copy = data.copy()  # Create a copy of data1 to avoid modifying the original dictionary
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+# Generate DataFrames for all sets of data
+dfs = []
+for year in years:
+    for oem in oem_numbers:
+        data1['OEM#'] = oem
+        df1 = pd.concat([generate_df(model, data1, year) for model in new_list_models], ignore_index=True)
+        dfs.append(df1)
+
+# Concatenate all DataFrames
+final_df = pd.concat(dfs, ignore_index=True)
+
+# Print the final DataFrame
+print(final_df)
+
+file_path = r"C:\Users\User\Desktop\nachmann\Reed Valve Assemblies\MERGE\11-22tundraexpidrene.csv"
+final_df.to_csv(file_path, index=False)
+
+import pandas as pd
+
+# Initial data
+data1 = {'Make': ['SKI-DOO'], 'Model': ['all models'], 'Vendor': ['NACH'], 'MPN': ['SM-07180'], 'AD Item Number': ['120363'], 
+         'Vendor Notes': [pd.NA], 'NI#': ['SM-07180'], 'REF#': [pd.NA], 'OEM#': ['42092451']}
+
+# List of models
+new_list_models = [
+    
+'GSX 600 Limited',
+'GSX 600 Limited Touring',
+'GSX SE E-TEC 600 HO',
+'GSX LE E-TEC 600 HO',
+'GTX 600 Limited',
+'GTX 4-TEC STD',
+'GTX 4-TEC LTD',
+'MX Z 600 50th Anniversary',
+'MX Z 600',
+'MX Z 600RS',
+'MX Z 600 Renegade X',
+'MX Z 600 Blizzard',
+'MX Z 670',
+'MX Z 600 Adrenaline',
+'MX Z 600 Trail',
+'MX Z 600 X',
+'MX Z 600 Sport',
+'MX Z 600 R Sport',
+'MX Z 600 Renegade',
+'MX Z 600 R X',
+'MX Z 600 TNT',
+'MX Z 600 X-RS',
+'MX Z 600 TNT Early Edition',
+'GSX 600 Sport',
+'GSX 600',
+'GSX 600 Sport SDI',
+'Expedition 600 TUV Yeti II',
+'Expedition 600 TUV REV-XU',
+'Expedition 600 SE',
+'Expedition 600',
+'Summit 670',
+'Summit 670 X',
+'Summit 600',
+'Summit 600 R Sport',
+'Summit 600 Sport',
+'Summit 600 Adrenaline',
+'Summit 600 X',
+'Summit 600 X 154',
+'Summit 600 Everest 146',
+'Summit 600 Everest',
+'MX Z X-RS E-TEC 800R',
+'MX Z X-RS 800R',
+'MX Z X E-TEC 800R',
+'MX Z X-RS E-TEC 600 HO',
+'MX Z X 4-TEC 1200',
+'MX Z X E-TEC 600 HO',
+'MX Z X-RS 600',
+'MX Z X E-TEC 850',
+'MX Z X-RS Iron Dog E-TEC 600 HO',
+'MX Z X-RS E-TEC 850',
+'MX Z X E-TEC 600R',
+'MX Z X-RS E-TEC 600R',
+'Renegade Adrenaline E-TEC 800R',
+'Renegade Adrenaline 4-TEC 1200',
+'Renegade Adrenaline 800R Power TEK',
+'Renegade Adrenaline E-TEC 600 HO',
+'Renegade Adrenaline ACE 900',
+'Renegade Adrenaline E-TEC 850',
+'Renegade Adrenaline E-TEC 600R',
+'Renegade Adrenaline ACE 900 Turbo',
+'Renegade Adrenaline ACE 900 Turbo R',
+'Renegade Backcountry X E-TEC 800R',
+'Renegade Backcountry X E-TEC 600 HO',
+'Renegade Backcountry 800R Power TEK',
+'Renegade Backcountry E-TEC 600 HO',
+'Renegade Backcountry E-TEC 800R',
+'Renegade Backcountry X E-TEC 850',
+'Renegade Backcountry E-TEC 850',
+'MX Z 800R Renegade X',
+'MX Z 800 Renegade X',
+'MX Z 1200 Renegade X',
+'MX Z 1000 Renegade X',
+'Renegade X E-TEC 800R',
+'Renegade X 4-TEC 1200',
+'Renegade X E-TEC 600 HO',
+'Renegade X-RS E-TEC 800R',
+'Renegade X E-TEC 850',
+'Renegade X-RS E-TEC 850',
+'Renegade X E-TEC 600R',
+'Renegade X ACE 900 Turbo',
+'Renegade X-RS ACE 900 Turbo',
+'Renegade X-RS ACE 900 Turbo R',
+'Renegade X-RS with Comp Package E-TEC 600R',
+'Renegade X ACE 900 Turbo R'
+
+]
+
+oem_numbers = ['420667530']
+
+# Range of years
+years = list(range(2008, 2022))
+
+# Function to generate DataFrame for each model
+def generate_df(model, data, year):
+    data_copy = data.copy()  # Create a copy of data1 to avoid modifying the original dictionary
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+# Generate DataFrames for all sets of data
+dfs = []
+for year in years:
+    for oem in oem_numbers:
+        data1['OEM#'] = oem
+        df1 = pd.concat([generate_df(model, data1, year) for model in new_list_models], ignore_index=True)
+        dfs.append(df1)
+
+# Concatenate all DataFrames
+final_df = pd.concat(dfs, ignore_index=True)
+
+# Print the final DataFrame
+print(final_df)
+
+file_path = r"C:\Users\User\Desktop\nachmann\Reed Valve Assemblies\MERGE\08-2207180.csv"
+final_df.to_csv(file_path, index=False)
+
+import pandas as pd
+
+# Initial data
+data1 = {'Make': ['SKI-DOO'], 'Model': ['all models'], 'Vendor': ['NACH'], 'MPN': ['SM-07180'], 'AD Item Number': ['120363'], 
+         'Vendor Notes': [pd.NA], 'NI#': ['SM-07180'], 'REF#': [pd.NA], 'OEM#': ['420667533']}
+
+# List of models
+new_list_models = [
+    
+'GSX 600 Limited',
+'GSX 600 Limited Touring',
+'GSX SE E-TEC 600 HO',
+'GSX LE E-TEC 600 HO',
+'GTX 600 Limited',
+'GTX 4-TEC STD',
+'GTX 4-TEC LTD',
+'MX Z 600 50th Anniversary',
+'MX Z 600',
+'MX Z 600RS',
+'MX Z 600 Renegade X',
+'MX Z 600 Blizzard',
+'MX Z 670',
+'MX Z 600 Adrenaline',
+'MX Z 600 Trail',
+'MX Z 600 X',
+'MX Z 600 Sport',
+'MX Z 600 R Sport',
+'MX Z 600 Renegade',
+'MX Z 600 R X',
+'MX Z 600 TNT',
+'MX Z 600 X-RS',
+'MX Z 600 TNT Early Edition',
+'GSX 600 Sport',
+'GSX 600',
+'GSX 600 Sport SDI',
+'Expedition 600 TUV Yeti II',
+'Expedition 600 TUV REV-XU',
+'Expedition 600 SE',
+'Expedition 600',
+'Summit 670',
+'Summit 670 X',
+'Summit 600',
+'Summit 600 R Sport',
+'Summit 600 Sport',
+'Summit 600 Adrenaline',
+'Summit 600 X',
+'Summit 600 X 154',
+'Summit 600 Everest 146',
+'Summit 600 Everest',
+'MX Z X-RS E-TEC 800R',
+'MX Z X-RS 800R',
+'MX Z X E-TEC 800R',
+'MX Z X-RS E-TEC 600 HO',
+'MX Z X 4-TEC 1200',
+'MX Z X E-TEC 600 HO',
+'MX Z X-RS 600',
+'MX Z X E-TEC 850',
+'MX Z X-RS Iron Dog E-TEC 600 HO',
+'MX Z X-RS E-TEC 850',
+'MX Z X E-TEC 600R',
+'MX Z X-RS E-TEC 600R',
+'Renegade Adrenaline E-TEC 800R',
+'Renegade Adrenaline 4-TEC 1200',
+'Renegade Adrenaline 800R Power TEK',
+'Renegade Adrenaline E-TEC 600 HO',
+'Renegade Adrenaline ACE 900',
+'Renegade Adrenaline E-TEC 850',
+'Renegade Adrenaline E-TEC 600R',
+'Renegade Adrenaline ACE 900 Turbo',
+'Renegade Adrenaline ACE 900 Turbo R',
+'Renegade Backcountry X E-TEC 800R',
+'Renegade Backcountry X E-TEC 600 HO',
+'Renegade Backcountry 800R Power TEK',
+'Renegade Backcountry E-TEC 600 HO',
+'Renegade Backcountry E-TEC 800R',
+'Renegade Backcountry X E-TEC 850',
+'Renegade Backcountry E-TEC 850',
+'MX Z 800R Renegade X',
+'MX Z 800 Renegade X',
+'MX Z 1200 Renegade X',
+'MX Z 1000 Renegade X',
+'Renegade X E-TEC 800R',
+'Renegade X 4-TEC 1200',
+'Renegade X E-TEC 600 HO',
+'Renegade X-RS E-TEC 800R',
+'Renegade X E-TEC 850',
+'Renegade X-RS E-TEC 850',
+'Renegade X E-TEC 600R',
+'Renegade X ACE 900 Turbo',
+'Renegade X-RS ACE 900 Turbo',
+'Renegade X-RS ACE 900 Turbo R',
+'Renegade X-RS with Comp Package E-TEC 600R',
+'Renegade X ACE 900 Turbo R'
+
+]
+
+oem_numbers = ['420667533']
+
+# Range of years
+years = list(range(2008, 2022))
+
+# Function to generate DataFrame for each model
+def generate_df(model, data, year):
+    data_copy = data.copy()  # Create a copy of data1 to avoid modifying the original dictionary
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+# Generate DataFrames for all sets of data
+dfs = []
+for year in years:
+    for oem in oem_numbers:
+        data1['OEM#'] = oem
+        df1 = pd.concat([generate_df(model, data1, year) for model in new_list_models], ignore_index=True)
+        dfs.append(df1)
+
+# Concatenate all DataFrames
+final_df = pd.concat(dfs, ignore_index=True)
+
+# Print the final DataFrame
+print(final_df)
